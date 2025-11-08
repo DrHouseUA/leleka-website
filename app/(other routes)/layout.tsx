@@ -16,7 +16,7 @@ export default function HomeLayout({
     <>
       {width < 1440 ? <Header /> : null}
       <main className={css["main"]}>
-        {width >= 1440 ? <SideBar /> : null}
+        <SideBar />
         <div className={css["main-content"]}>
           <Breadcrumbs />
 

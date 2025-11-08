@@ -22,6 +22,8 @@
 
 @media (min-width: 1440px) {
   .sidebar {
+    /* position: relative;
+    display: block; */
     transform: none;
     background: transparent;
   }

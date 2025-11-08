@@ -78,7 +78,7 @@ export default function SideBar() {
                   <Image src="/travel.svg" alt="Close" width={24} height={24} />
                   <Link
                     className={css.navLink}
-                    href={isAuth ? "/journey" : "/auth/register"}
+                    href={isAuth ? "/journey/1" : "/auth/register"}
                   >
                     Подорож
                   </Link>
