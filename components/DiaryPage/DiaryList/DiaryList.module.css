@@ -50,6 +50,10 @@
   gap: 16px;
 }
 
+.add-icon {
+  cursor: pointer;
+}
+
 @media (width: 768px) {
   .diary-list-container {
     padding: 32px;
@@ -104,10 +108,9 @@
   }
 }
 
-@media (width: 1440px) {
+@media (min-width: 1440px) {
   .diary-list-container {
-    padding: 32px 20px;
-    width: 389px;
+    padding: 32px 20px 0;
   }
 
   .diary-list-block {
@@ -161,4 +164,33 @@
     height: 643px;
     overflow: auto;
   }
+}
+
+/* стилі для Скролл бару*/
+.scrollable {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+/* Стиль самого скролбару */
+.diary-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Стиль треку (фон) */
+.diary-list::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+/* Стиль повзунка */
+.diary-list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  border: 2px solid #f0f0f0;
+}
+
+/* При наведенні */
+.diary-list::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }

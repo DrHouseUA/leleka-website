@@ -17,20 +17,18 @@ export default function DiaryList() {
           <div className={css["diary-header-left-content"]}>Ваші записи</div>
           <div className={css["diary-header-right-content"]}>
             <div>Новий запис</div>
-            <button onClick={() => setIsModalOpen(true)}>+</button>
             {isModalOpen && (
               <AddDiaryEntryModal onClose={() => setIsModalOpen(false)}>
                 <AddDiaryEntryForm />
               </AddDiaryEntryModal>
             )}
             <Image
+              className={css["add-icon"]}
               src="/add_icon.svg"
               width={24}
               height={24}
               alt="add icon"
-              onClick={() => {
-                console.log("mene najali");
-              }}
+              onClick={() => setIsModalOpen(true)}
             ></Image>
           </div>
         </div>
