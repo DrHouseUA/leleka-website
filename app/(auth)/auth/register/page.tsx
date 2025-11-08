@@ -5,6 +5,7 @@ import { registerUser } from "@/lib/api/clientApi";
 import { useState } from "react";
 import { ApiError } from "@/lib/api/api";
 import { useRouter } from "next/navigation";
+import RegistrationForm from "@/components/RegistrationForm/RegistrationForm";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -32,49 +33,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className={css.mainContent}>
-      <h1 className={css.formTitle}>Зареєструватись</h1>
-      <form action={handleSubmit} className={css.form}>
-        <div className={css.formGroup}>
-          <label htmlFor="name">Ім&apos;я</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            className={css.input}
-            required
-          />
-        </div>
-
-        <div className={css.formGroup}>
-          <label htmlFor="email">Пошта</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            autoComplete="email"
-            className={css.input}
-            required
-          />
-        </div>
-
-        <div className={css.formGroup}>
-          <label htmlFor="password">Пароль</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            autoComplete="new-password"
-            className={css.input}
-            required
-          />
-        </div>
-
-        <div className={css.actions}>
-          <button type="submit" className={css.submitButton}>
-            Зареєструватись
-          </button>
-        </div>
+    <>
+      <RegistrationForm></RegistrationForm>
 
         {error && (
           <p className={css.error}>
@@ -82,7 +42,6 @@ export default function RegisterPage() {
             {error}
           </p>
         )}
-      </form>
-    </main>
+    </>
   );
 }

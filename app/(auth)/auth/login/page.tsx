@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ApiError } from "@/lib/api/api";
 import { useAuthStore } from "@/lib/store/authStore";
 import Link from "next/link";
+import LoginForm from "@/components/LoginForm/LoginForm";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -35,43 +36,8 @@ export default function LoginPage() {
   };
 
   return (
-    <main className={css.mainContent}>
-      <form action={handleSubmit} className={css.form}>
-        <h1 className={css.formTitle}> Увійти</h1>
-
-        <div className={css.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            autoComplete="email"
-            className={css.input}
-            required
-          />
-        </div>
-
-        <div className={css.formGroup}>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            autoComplete="current-password"
-            className={css.input}
-            required
-          />
-        </div>
-
-        <div className={css.actions}>
-          <button type="submit" className={css.submitButton}>
-            Увійти
-          </button>
-          Не має акаунту? <Link href={"/auth/register"}>Зареєструватись</Link>
-        </div>
-
-        <p className={css.error}>{error}</p>
-      </form>
-    </main>
+    <LoginForm>
+      
+    </LoginForm>
   );
 }

@@ -1,0 +1,100 @@
+.wrapper {
+  position: relative;
+}
+
+.label {
+  font-family: "Lato", sans-serif;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 400;
+  line-height: 150%;
+  font-size: 16px;
+  color: #000;
+}
+
+.control {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 12px;
+  padding: 8px 12px;
+  height: 40px;
+
+  outline: none;
+  transition: border 0.2s ease;
+
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #7f7f7f;
+}
+
+.control:hover,
+.control:focus {
+  border-color: var(--accent-ui);
+  outline: none;
+}
+
+.errorInput {
+  border-color: #e74c3c;
+  background: #fcebea;
+}
+
+.menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  z-index: 10;
+  background: #f2f2f2;
+}
+
+.option {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.option:hover {
+  background: #eee;
+}
+
+.option:active {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #191919;
+}
+
+.errorText {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.customArrow {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transform: translateY(-50%) rotate(-45deg);
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.open .customArrow {
+  transform: translateY(-50%) rotate(135deg);
+}

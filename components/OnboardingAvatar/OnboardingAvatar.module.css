@@ -1,0 +1,64 @@
+/* mobile */
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.uploadButton {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+  border-radius: 100px;
+  padding: 8px 20px;
+  width: 179px;
+  height: 42px;
+  background: rgba(0, 0, 0, 0.05);
+
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: #000;
+
+  cursor: pointer;
+}
+.avatarImage {
+  border-radius: 100%;
+}
+
+/* tablet */
+@media screen and (min-width: 768px) {
+  .profileSection {
+    padding: 24px 32px 0px;
+    justify-content: flex-start;
+  }
+
+  .profileInfo {
+    padding: 0px 0px 0px 4px;
+    align-items: flex-start;
+  }
+  .uploadBtn {
+    width: 218px;
+  }
+}
+
+/* desktop */
+
+@media screen and (min-width: 1440px) {
+  .profileSection {
+    align-items: center;
+    gap: 24px;
+  }
+
+  .uploadBtn {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 218px;
+    height: 42px;
+  }
+}

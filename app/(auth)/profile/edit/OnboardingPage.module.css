@@ -1,0 +1,62 @@
+.pageContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.formColumn {
+  width: 100%;
+  padding: 72px 64px;
+}
+
+.illustrationColumn img {
+  object-fit: cover;
+}
+
+.container {
+  max-width: 375px;
+  margin: 0 auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.container {
+  max-width: 1440px;
+}
+
+.logo {
+  margin-top: 22px;
+}
+
+.header {
+  position: absolute;
+  height: 72px;
+}
+
+@media screen and (max-width: 1439px) {
+  .container {
+    max-width: 767px;
+  }
+
+  .illustrationColumn {
+    display: none;
+  }
+
+  .pageContainer {
+    justify-content: center;
+  }
+
+  .header {
+    position: relative;
+  }
+}
+@media screen and (max-width: 767px) {
+  .container {
+    max-width: 375px;
+  }
+
+  .formColumn {
+    width: 335px;
+  }
+}

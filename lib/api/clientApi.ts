@@ -85,3 +85,28 @@ export async function getMomDetails(weekNumber: number): Promise<MomDetails> {
   );
   return data;
 }
+
+export interface UserToUpdate {
+  name?: string;
+  email?: string;
+  dueDate?: string;
+  babyGender?: string;
+}
+
+export const updateUser = async (updatedUser: UserToUpdate) => {
+  const { data } = await nextServerApi.patch<User>("/users/current", updatedUser);
+  return data;
+};
+
+export const uploadImage = async (file: File) => {
+  const formData = new FormData();
+  formData.append("avatar", file);
+
+  const res = await nextServerApi.patch<User>("/users/current/avatars", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return res.data;
+};
