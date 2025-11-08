@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import css from "./DiaryEntryDetails.module.css";
 
@@ -6,30 +8,33 @@ export default function DiaryEntryDetails() {
     <section className={css["diary-details-container"]}>
       <div className={css["diary-details-block"]}>
         <div className={css["diary-details-header"]}>
-          <div className={css["diary-details-title"]}>
-            Перший привіт{" "}
-            <Image
-              src="/edit_icon.svg"
-              width={24}
-              height={24}
-              alt="add icon"
-              onClick={() => {
-                console.log("mene najali");
-              }}
-            ></Image>
+          <div className={css["diary-details-header-wrapper"]}>
+            <div className={css["diary-details-title"]}>
+              Перший привіт{" "}
+              <Image
+                src="/edit_icon.svg"
+                width={24}
+                height={24}
+                alt="add icon"
+                onClick={() => {
+                  console.log("mene najali");
+                }}
+              ></Image>
+            </div>
+            <div className={css["diary-details-date"]}>
+              15 Липня 2025
+              <Image
+                src="/delete_icon.svg"
+                width={24}
+                height={24}
+                alt="add icon"
+                onClick={() => {
+                  console.log("mene najali");
+                }}
+              ></Image>
+            </div>
           </div>
-          <div className={css["diary-details-date"]}>
-            15 Липня 2025
-            <Image
-              src="/delete_icon.svg"
-              width={24}
-              height={24}
-              alt="add icon"
-              onClick={() => {
-                console.log("mene najali");
-              }}
-            ></Image>
-          </div>
+
           <div className={css["diary-details-content"]}>
             Це сталося! Сьогодні ввечері, коли я спокійно дивилася фільм, я це
             відчула. Спочатку подумала, що здалося. Такий ледь вловимий поштовх
