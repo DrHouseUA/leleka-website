@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { parse } from "cookie";
 import { checkServerSession } from "./lib/api/serverApi";
 
-const privateRoutes = [""];
+const privateRoutes = ["/profile", "/diary", "/journey"];
 const publicRoutes = ["/auth/login", "/auth/register"];
 
 export async function middleware(request: NextRequest) {
@@ -89,5 +89,10 @@ export async function middleware(request: NextRequest) {
 // };
 
 export const config = {
-  matcher: ["/auth/:path*"],
+  matcher: [
+    "/auth/:path*",
+    "/profile/:path*",
+    "/diary/:path*",
+    "/journey/:path*",
+  ],
 };

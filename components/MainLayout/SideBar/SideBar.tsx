@@ -67,28 +67,19 @@ export default function SideBar() {
               <ul className={css.navList}>
                 <li className={css.navItem}>
                   <Image src="/myday.svg" alt="Close" width={24} height={24} />
-                  <Link
-                    className={css.navLink}
-                    href={isAuth ? "/" : "/auth/register"}
-                  >
+                  <Link className={css.navLink} href={"/"}>
                     Мій день
                   </Link>
                 </li>
                 <li className={css.navItem}>
                   <Image src="/travel.svg" alt="Close" width={24} height={24} />
-                  <Link
-                    className={css.navLink}
-                    href={isAuth ? "/journey/1" : "/auth/register"}
-                  >
+                  <Link className={css.navLink} href={"/journey/1"}>
                     Подорож
                   </Link>
                 </li>
                 <li className={css.navItem}>
                   <Image src="/diary.svg" alt="Close" width={24} height={24} />
-                  <Link
-                    className={css.navLink}
-                    href={isAuth ? "/diary" : "/auth/register"}
-                  >
+                  <Link className={css.navLink} href={"/diary"}>
                     Щоденник
                   </Link>
                 </li>
@@ -99,10 +90,7 @@ export default function SideBar() {
                     width={24}
                     height={24}
                   />
-                  <Link
-                    className={css.navLink}
-                    href={isAuth ? "/profile" : "/auth/register"}
-                  >
+                  <Link className={css.navLink} href={"/profile"}>
                     Профіль
                   </Link>
                 </li>

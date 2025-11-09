@@ -94,7 +94,10 @@ export interface UserToUpdate {
 }
 
 export const updateUser = async (updatedUser: UserToUpdate) => {
-  const { data } = await nextServerApi.patch<User>("/users/current", updatedUser);
+  const { data } = await nextServerApi.patch<User>(
+    "/users/current",
+    updatedUser
+  );
   return data;
 };
 
@@ -102,11 +105,15 @@ export const uploadImage = async (file: File) => {
   const formData = new FormData();
   formData.append("avatar", file);
 
-  const res = await nextServerApi.patch<User>("/users/current/avatars", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  const res = await nextServerApi.patch<User>(
+    "/users/current/avatars",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
 
   return res.data;
 };
