@@ -36,6 +36,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  list-style-type: none;
 }
 
 .diary-item-emotion {
@@ -83,7 +84,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 325px;
     height: 29px;
     margin-bottom: 8px;
   }

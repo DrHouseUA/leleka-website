@@ -1,23 +1,18 @@
-@media (max-width: 767.8px) {
-  .breadcrumb-block {
-    padding: 16px 20px 0px;
-    display: flex;
-    width: 300px;
-    height: 24px;
-    margin-bottom: 16px;
-    justify-content: flex-start;
-    align-items: center;
-  }
+.breadcrumb-block {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+  color: #333;
+  padding: 0 24px;
 }
 
-@media (min-width: 1440px) {
-  .breadcrumb-block {
-    padding: 24px 32px 0px;
-    width: 1128px;
-    display: flex;
-    align-items: center;
-    background-color: rgb(73, 73, 31);
-  }
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .nav-link {
@@ -29,7 +24,13 @@
   color: var(--color-scheme-text);
 }
 
-.breadcrumb-block .active {
+.nav-link:hover {
+  color: #005a9e;
+  text-decoration: underline;
+}
+
+.active {
+  text-decoration: none;
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 12px;

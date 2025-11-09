@@ -14,16 +14,17 @@ import Select from "../SelectComponent/Select";
 
 import css from "./AddDiaryEntryForm.module.css";
 import { Emotion, fetchEmotions } from "@/lib/api/clientApi";
+import { createNote } from "@/lib/api/diaryApi";
 
 interface DiaryValues {
   title: string;
-  categories: string[];
+  emotions: string[];
   description: string;
 }
 
 const initialValues: DiaryValues = {
   title: "",
-  categories: [],
+  emotions: [],
   description: "",
 };
 
@@ -40,11 +41,13 @@ const diaryValidationSchema = Yup.object().shape({
 export default function AddDiaryEntryForm() {
   const fieldId = useId();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: DiaryValues,
     actions: FormikHelpers<DiaryValues>
   ) => {
     console.log("Order data:", values);
+    await createNote(values);
+
     actions.resetForm();
   };
 
