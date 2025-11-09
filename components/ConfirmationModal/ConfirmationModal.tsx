@@ -3,18 +3,20 @@
 import { useEffect } from "react";
 import css from "./ConfirmationModal.module.css";
 import Image from "next/image";
-
 import toast from "react-hot-toast";
 import { useModalStore } from "@/lib/store/modalStore";
+import { useRouter } from "next/navigation";
 
 export default function ConfirmationModal() {
   const { isOpen, options, closeModal } = useModalStore();
+  const router = useRouter();
 
   const handleConfirm = async () => {
     try {
       await options?.onConfirm?.();
       toast.success("Дію виконано успішно ✅");
       closeModal();
+      router.push("/");
     } catch (error) {
       toast.error("Сталася помилка ");
       console.error(error);
