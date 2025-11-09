@@ -1,19 +1,28 @@
 import axios from "axios";
 import type { BabyDataResponse } from "@/types/baby";
 
-const API_URL = "https://lehlehka.b.goit.study";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+const api = axios.create({
+  baseURL: API_URL + "/api",
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 export const getBabyData = async (
   isAuth: boolean
 ): Promise<{ data: BabyDataResponse }> => {
   const endpoint = isAuth
-    ? `${API_URL}/weeks/greeting`
-    : `${API_URL}/weeks/greeting/public`;
+    ? `${api.defaults.baseURL}/weeks/greeting`
+    : `${api.defaults.baseURL}/weeks/greeting/public`;
 
   try {
-    const response = await axios.get<BabyDataResponse>(endpoint, {
+    console.log(endpoint);
+    const response = await api.get<BabyDataResponse>(endpoint, {
       headers: { Accept: "application/json" },
-      withCredentials: isAuth,
+      withCredentials: true,
     });
 
     return response;

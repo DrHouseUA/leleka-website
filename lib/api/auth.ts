@@ -11,15 +11,17 @@ const api = axios.create({
   },
 });
 
-export const getCurrentUser = async (): Promise<User | null> => {
-  try {
-    const { data } = await api.get("/users/current");
-    return data;
-  } catch (error) {
-    console.error("Error getting current user:", error);
-    return null;
-  }
-};
+// export const getCurrentUser = async (): Promise<User | null> => {
+//   try {
+//     console.log("Функцію з auth викликано");
+//     const { data } = await api.get("/users/current");
+//     console.log(data);
+//     return data;
+//   } catch (error) {
+//     console.error("Error getting current user:", error);
+//     return null;
+//   }
+// };
 
 export const logoutRequest = async (): Promise<void> => {
   await api.post("/auth/logout");

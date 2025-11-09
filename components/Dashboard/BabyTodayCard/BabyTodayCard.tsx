@@ -5,13 +5,14 @@ import Image from "next/image";
 import css from "./BabyTodayCard.module.css";
 import type { BabyToday } from "@/types/baby";
 import { getBabyData } from "@/lib/api/babyService";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/lib/store/authStore";
+// import { useAuth } from "@/hooks/useAuth";
 
 export default function BabyTodayCard() {
-  const { isAuth } = useAuth();
+  const { isAuthenticated } = useAuthStore();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["babyData"],
-    queryFn: () => getBabyData(isAuth),
+    queryFn: () => getBabyData(isAuthenticated),
   });
 
   if (isLoading) {

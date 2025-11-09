@@ -4,13 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 
 import css from "./MomTipCard.module.css";
 import { getBabyData } from "@/lib/api/babyService";
-import { useAuth } from "@/hooks/useAuth";
+// import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/lib/store/authStore";
 
 export default function MomTipCard() {
-  const { isAuth } = useAuth();
+  const { isAuthenticated } = useAuthStore();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["babyData"],
-    queryFn: () => getBabyData(isAuth),
+    queryFn: () => getBabyData(isAuthenticated),
   });
 
   if (isLoading) {
