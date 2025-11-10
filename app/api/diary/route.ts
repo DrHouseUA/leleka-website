@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { lehlehkaApi } from "../api";
 import { cookies } from "next/headers";
 import { isAxiosError } from "axios";
 import { logErrorResponse } from "../_utils/utils";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const body = await request.json();
-    const res = await lehlehkaApi.post("/notes", body, {
+    const res = await lehlehkaApi.post("/diary", body, {
       headers: {
         Cookie: cookieStore.toString(),
       },

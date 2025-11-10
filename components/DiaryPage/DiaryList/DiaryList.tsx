@@ -3,14 +3,14 @@
 import Image from "next/image";
 import css from "./DiaryList.module.css";
 import DiaryEntryCard from "../DiaryEntryCard/DiaryEntryCard";
-import { useState } from "react";
 import AddDiaryEntryModal from "@/components/AddDiaryEntryModal/AddDiaryEntryModal";
 import AddDiaryEntryForm from "@/components/AddDiaryEntryForm/AddDiaryEntryForm";
 import { fetchNotes, FetchNotesResponse } from "@/lib/api/diaryApi";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useNoteModalStore } from "@/lib/store/modalNoteStore";
 
 export default function DiaryList() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { isOpen, openNoteModal, closeNoteModal } = useNoteModalStore();
 
   const { data } = useQuery<FetchNotesResponse>({
     queryKey: ["notes"],
@@ -18,6 +18,7 @@ export default function DiaryList() {
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
+
   console.log(data);
   return (
     <section className={css["diary-list-container"]}>
@@ -32,7 +33,7 @@ export default function DiaryList() {
               width={24}
               height={24}
               alt="add icon"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => openNoteModal()}
             ></Image>
           </div>
         </div>
@@ -54,8 +55,8 @@ export default function DiaryList() {
           {!data && <p style={{ padding: "20px" }}>Наразі нотаток немає...</p>}
         </ul>
       </div>
-      {isModalOpen && (
-        <AddDiaryEntryModal onClose={() => setIsModalOpen(false)}>
+      {isOpen && (
+        <AddDiaryEntryModal onClose={() => closeNoteModal()}>
           <AddDiaryEntryForm />
         </AddDiaryEntryModal>
       )}
