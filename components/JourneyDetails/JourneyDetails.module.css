@@ -1,13 +1,8 @@
 .journeyDetailsSection {
   font-family: "Lato", sans-serif;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  width: 100%;
+  padding-top: 32px;
+  max-width: 335px;
   box-sizing: border-box;
-  padding-inline: 16px;
 }
 
 .tabsContainer {
@@ -15,29 +10,30 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  border: 1px solid rgba(255, 255, 255, 0);
-
+  border: 1px solid var(--opacity-transparent);
   border-radius: 100px;
   background: #fff4f6;
-
   box-sizing: border-box;
   padding: 4px;
-  width: 311px;
+  width: 335px;
   height: 50px;
+  margin-bottom: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .tabButtonActive {
-  border: 1px solid rgba(255, 255, 255, 0);
+  border: 1px solid var(--opacity-transparent);
+  background: var(--color-scheme-foreground-alt);
   border-radius: 100px;
   padding: 10px 24px;
-  width: 151px;
+  width: 163px;
   height: 42px;
   background: #ffdae0;
-
   color: #191919;
-
   font-weight: 500;
   font-size: 14px;
+  line-height: 1, 6;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -50,7 +46,6 @@
   height: 40px;
   background: transparent;
   color: #4c4c4c;
-
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
@@ -113,7 +108,10 @@
 
 @media screen and (min-width: 1128px) {
   .journeyDetailsSection {
-    width: calc(100% - 300px);
+    max-width: 1128px;
+
+
+   
   }
 
   .tabsContainer {

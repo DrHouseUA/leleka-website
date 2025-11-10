@@ -13,6 +13,7 @@ const api = axios.create({
 
 export const getCurrentUser = async (): Promise<User | null> => {
   try {
+    console.log("Функцію з auth викликано");
     const { data } = await api.get("/users/current");
     return data;
   } catch (error) {

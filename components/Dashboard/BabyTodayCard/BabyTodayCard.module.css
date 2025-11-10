@@ -7,7 +7,7 @@
   height: auto;
 
   background: #fff4f6;
-  padding: 32px;
+  margin-bottom: 24px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -16,15 +16,37 @@
   }
 }
 
+@media only screen and (min-width: 1440px) {
+  .card {
+    width: 642px;
+    height: 421px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .card::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .card::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+  }
+}
+
 .title {
   font-family: "Comfortaa", sans-serif;
-
   font-weight: 700;
   font-size: 20px;
   line-height: 1.4;
   letter-spacing: 0.01em;
   color: #000;
   margin-bottom: 16px;
+}
+
+@media only screen and (min-width: 1440px) {
+  .title {
+    font-size: 24px;
+  }
 }
 
 .image {
@@ -35,6 +57,20 @@
   margin-bottom: 16px;
 }
 
+@media only screen and (min-width: 768px) {
+  .image {
+    width: 257px;
+    height: 194px;
+    margin-bottom: 24px;
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
 .textWrapper {
   display: flex;
   align-items: flex-start;
@@ -43,12 +79,19 @@
   gap: 4px;
   margin-bottom: 24px;
 }
+
 .info {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.5;
   color: #000;
+}
+
+@media only screen and (min-width: 1440px) {
+  .info {
+    font-size: 16px;
+  }
 }
 
 .infotext {

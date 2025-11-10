@@ -15,10 +15,12 @@ import Select from "../SelectComponent/Select";
 import css from "./AddDiaryEntryForm.module.css";
 import { Emotion, fetchEmotions } from "@/lib/api/clientApi";
 import { createNote } from "@/lib/api/diaryApi";
+import { useNoteModalStore } from "@/lib/store/modalNoteStore";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface DiaryValues {
   title: string;
-  emotions: string[];
+  emotions: Emotion[];
   description: string;
 }
 
@@ -40,15 +42,42 @@ const diaryValidationSchema = Yup.object().shape({
 
 export default function AddDiaryEntryForm() {
   const fieldId = useId();
+  const { closeNoteModal } = useNoteModalStore();
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (payload: {
+      title: string;
+      description: string;
+      emotions: string[];
+    }) => createNote(payload),
+    onSuccess: () => {
+      // Інвалідовуємо кеш нотаток — DiaryList зробить рефетч автоматично
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      // Закриваємо модаль після успішного збереження
+      closeNoteModal();
+    },
+  });
 
   const handleSubmit = async (
     values: DiaryValues,
     actions: FormikHelpers<DiaryValues>
   ) => {
-    console.log("Order data:", values);
-    await createNote(values);
+    const emotionIds = values.emotions.map(({ _id }) => _id);
 
-    actions.resetForm();
+    mutation.mutate(
+      {
+        title: values.title,
+        description: values.description,
+        emotions: emotionIds,
+      },
+      {
+        onSettled: () => {
+          actions.setSubmitting(false);
+          actions.resetForm();
+        },
+      }
+    );
   };
 
   return (
@@ -85,7 +114,7 @@ export default function AddDiaryEntryForm() {
             Категорії
           </label>
 
-          <Field name="categories">
+          <Field name="emotions">
             {({ field, form, meta }: FieldProps<Emotion[]>) => (
               <Select
                 placeholder="Оберіть категорію"

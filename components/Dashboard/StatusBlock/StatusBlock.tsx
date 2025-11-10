@@ -1,14 +1,16 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-
 import css from "./StatusBlock.module.css";
 import { getBabyData } from "@/lib/api/babyService";
+// import { useAuth } from "@/hooks/useAuth";
+import { useAuthStore } from "@/lib/store/authStore";
 
 export default function StatusBlock() {
+  const { isAuthenticated } = useAuthStore();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["babyData"],
-    queryFn: getBabyData,
+    queryFn: () => getBabyData(isAuthenticated),
   });
 
   if (isLoading) {

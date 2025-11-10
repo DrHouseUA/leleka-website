@@ -18,7 +18,7 @@ export default function BabyTab({ data }: BabyTabProps) {
             className={css.babySizeImage}
           />
         </div>
-        <p className={css.analogyText}>Ваш малюк розміром як {data.analogy}</p>
+        <p className={css.analogyText}>{data.analogy}</p>
       </div>
 
       <div className={css.journeyTextInfo}>

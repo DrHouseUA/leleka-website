@@ -94,9 +94,9 @@ a {
 body {
   margin: 0 auto;
 }
-
+/* 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
+} */

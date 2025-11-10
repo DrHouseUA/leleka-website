@@ -22,4 +22,11 @@
   margin: 0 auto;
   display: flex;
   height: 100vh;
+  flex-direction: column;
+}
+
+@media (min-width: 1440px) {
+  .main {
+    flex-direction: row;
+  }
 }

@@ -43,7 +43,7 @@ export default function JourneyPage() {
   if (!isAuthenticated) return <div>⚠️ Будь ласка, увійдіть, щоб побачити сторінку подорожі.</div>;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div>
       <WeekSelector
         currentWeek={greeting?.curWeekToPregnant || 1}
         selectedWeek={selectedWeek}

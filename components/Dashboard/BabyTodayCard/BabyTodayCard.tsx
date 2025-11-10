@@ -3,14 +3,16 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import css from "./BabyTodayCard.module.css";
-
 import type { BabyToday } from "@/types/baby";
 import { getBabyData } from "@/lib/api/babyService";
+import { useAuthStore } from "@/lib/store/authStore";
+// import { useAuth } from "@/hooks/useAuth";
 
 export default function BabyTodayCard() {
+  const { isAuthenticated } = useAuthStore();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["babyData"],
-    queryFn: getBabyData,
+    queryFn: () => getBabyData(isAuthenticated),
   });
 
   if (isLoading) {
@@ -56,8 +58,8 @@ export default function BabyTodayCard() {
             <span className={css.infotext}>{baby.babyActivity}</span>
           </p>
         </div>
-        <p className={css.infotext}>{baby.babyDevelopment}</p>
       </div>
+      <p className={css.infotext}>{baby.babyDevelopment}</p>
     </div>
   );
 }

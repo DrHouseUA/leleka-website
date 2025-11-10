@@ -1,16 +1,29 @@
 import axios from "axios";
 import type { BabyDataResponse } from "@/types/baby";
 
-const API_URL = "https://lehlehka.b.goit.study";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
-export const getBabyData = async (): Promise<{ data: BabyDataResponse }> => {
+const api = axios.create({
+  baseURL: API_URL + "/api",
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export const getBabyData = async (
+  isAuth: boolean
+): Promise<{ data: BabyDataResponse }> => {
+  const endpoint = isAuth
+    ? `${api.defaults.baseURL}/weeks/greeting`
+    : `${api.defaults.baseURL}/weeks/greeting/public`;
+
   try {
-    const response = await axios.get<BabyDataResponse>(
-      `${API_URL}/weeks/greeting/public`,
-      {
-        headers: { Accept: "application/json" },
-      }
-    );
+    const response = await api.get<BabyDataResponse>(endpoint, {
+      headers: { Accept: "application/json" },
+      withCredentials: true,
+    });
+
     return response;
   } catch (error) {
     console.error("Помилка при отриманні даних з бекенду:", error);

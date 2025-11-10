@@ -52,6 +52,10 @@
   background: var(--color-scheme-foreground);
 }
 
+.diary-item-root {
+  cursor: pointer;
+}
+
 @media (width: 768px) {
   .diary-item {
     border: 1px solid var(--color-scheme-foreground-alt);

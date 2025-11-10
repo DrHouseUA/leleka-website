@@ -137,6 +137,9 @@
     align-items: start;
     padding: 32px;
     gap: 32px;
+
+    width: 1064px;
+      height: 540px;
   }
 
   .infoForMomBlock {
