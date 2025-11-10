@@ -1,138 +1,147 @@
 .weekSelectorContainer {
-    width: 100%;
-    margin-top: 24px;
-    padding-bottom: 16px;
+  width: 100%;
+  margin-top: 24px;
+  padding-bottom: 16px;
+  display: flex; /* розташовує кнопки в ряд */
+  flex-wrap: nowrap; /* забороняємо переносити кнопки */
+  overflow-x: auto; /* горизонтальний скрол */
+  overflow-y: hidden; /* вертикальний скрол прихований */
+  width: 100%; /* контейнер на всю ширину сторінки */
+  max-width: 100%; /* забороняємо контейнеру рости більше екрана */
+  gap: 10px; /* відстань між кнопками */
+  padding: 10px; /* внутрішній відступ */
+  -webkit-overflow-scrolling: touch; /* плавний скрол на мобільних */
 }
 
 .weekSlide {
-    width: 97px;
-    flex-shrink: 0;
+  width: 97px;
+  flex-shrink: 0;
 }
 
 .weekButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 0px solid rgba(0, 0, 0, 0.15);
-    border-radius: 32px;
-    padding: 16px;
-    background-color: #fff4f6;
-    width: 97px;
-    height: 87px;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 0px solid rgba(0, 0, 0, 0.15);
+  border-radius: 32px;
+  padding: 16px;
+  background-color: #fff4f6;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .weekButton:hover {
-    background-color: #ffe4e8;
+  background-color: #ffe4e8;
 }
 
 .activatedButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid rgba(0, 0, 0, 0.15);
-    border-radius: 32px;
-    background-color: #ffcbd3;
-    padding: 12px;
-    width: 97px;
-    height: 87px;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid rgba(0, 0, 0, 0.15);
+  border-radius: 32px;
+  background-color: #ffcbd3;
+  padding: 12px;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .currentButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #fff4f6;
-    border: 2px solid #ff6b9d;
-    border-radius: 32px;
-    padding: 16px;
-    width: 97px;
-    height: 87px;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff4f6;
+  border: 2px solid #ff6b9d;
+  border-radius: 32px;
+  padding: 16px;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .disabledBtn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #f2f2f2;
-    border: 0px solid rgba(0, 0, 0, 0.15);
-    border-radius: 32px;
-    padding: 16px;
-    width: 97px;
-    height: 87px;
-    box-sizing: border-box;
-    opacity: 0.6;
-    cursor: not-allowed;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f2;
+  border: 0px solid rgba(0, 0, 0, 0.15);
+  border-radius: 32px;
+  padding: 16px;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  opacity: 0.6;
+  cursor: not-allowed;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .weekNumbers {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 1.4;
-    letter-spacing: 0.01em;
-    text-align: center;
-    color: #000;
-    font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #000;
+  font-family: "Comfortaa", sans-serif;
 }
 
 .weekText {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.5;
-    text-align: center;
-    color: #000;
-    font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: #000;
+  font-family: "Lato", sans-serif;
 }
 
 @media screen and (min-width: 1440px) {
-    .weekText {
-        font-size: 16px;
-    }
+  .weekText {
+    font-size: 16px;
+  }
 
-    .weekNumbers {
-        font-size: 32px;
-    }
+  .weekNumbers {
+    font-size: 32px;
+  }
 
-    /* ВИПРАВЛЕНО: прибрала обмеження ширини */
-    .weekSelectorContainer {
-        width: 100%;
-    }
+  /* ВИПРАВЛЕНО: прибрала обмеження ширини */
+  .weekSelectorContainer {
+    width: 100%;
+  }
 
-    .weekButton,
-    .activatedButton,
-    .currentButton,
-    .disabledBtn {
-        width: 97px;
-        height: 101px;
-    }
+  .weekButton,
+  .activatedButton,
+  .currentButton,
+  .disabledBtn {
+    width: 97px;
+    height: 101px;
+  }
 }

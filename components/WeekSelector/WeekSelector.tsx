@@ -1,10 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper";
-import "swiper/css";
 import css from "./WeekSelector.module.css";
 
 interface WeekSelectorProps {
@@ -18,68 +14,50 @@ export default function WeekSelector({
   selectedWeek,
   onWeekChange,
 }: WeekSelectorProps) {
-  const swiperRef = useRef<SwiperType | null>(null);
   const weeks = Array.from({ length: 42 }, (_, i) => i + 1);
+  const weeksContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (swiperRef.current && selectedWeek) {
+    if (weeksContainerRef.current && selectedWeek) {
       const index = weeks.indexOf(selectedWeek);
       if (index !== -1) {
-        swiperRef.current.slideTo(index, 300);
+        weeksContainerRef.current.children[index]?.scrollIntoView({
+          behavior: "instant",
+          inline: "start",
+        });
       }
     }
   }, [selectedWeek, weeks]);
 
   return (
-    <div className={css.weekSelectorContainer}>
-      <Swiper
-        modules={[Mousewheel]}
-        slidesPerView="auto"
-        spaceBetween={16}
-        centeredSlides={false}
-        mousewheel={{
-          forceToAxis: true,
-          releaseOnEdges: true,
-          sensitivity: 3,
-        }}
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
+    <div className={css.weekSelectorContainer} ref={weeksContainerRef}>
+      {weeks.map((week) => {
+        const isCurrent = week === currentWeek;
+        const isSelected = week === selectedWeek;
+        const isFuture = week > currentWeek;
+        const isDisabled = isFuture;
 
-          const index = weeks.indexOf(selectedWeek);
-          if (index !== -1) {
-            setTimeout(() => swiper.slideTo(index, 0), 100);
-          }
-        }}
-      >
-        {weeks.map((week) => {
-          const isCurrent = week === currentWeek;
-          const isSelected = week === selectedWeek;
-          const isFuture = week > currentWeek;
-          const isDisabled = isFuture;
+        let buttonClass = css.weekButton;
+        if (isSelected) {
+          buttonClass = css.activatedButton;
+        } else if (isCurrent) {
+          buttonClass = css.currentButton;
+        } else if (isDisabled) {
+          buttonClass = css.disabledBtn;
+        }
 
-          let buttonClass = css.weekButton;
-          if (isSelected) {
-            buttonClass = css.activatedButton;
-          } else if (isCurrent) {
-            buttonClass = css.currentButton;
-          } else if (isDisabled) {
-            buttonClass = css.disabledBtn;
-          }
-
-          return (
-            <SwiperSlide key={week} className={css.weekSlide}>
-              <button
-                onClick={() => !isDisabled && onWeekChange(week)}
-                disabled={isDisabled}
-                className={buttonClass}
-              >
-                <p className={css.weekNumbers}>{week}</p>
-                <p className={css.weekText}>Тиждень</p>
-              </button>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+        return (
+          <button
+            key={week}
+            onClick={() => !isDisabled && onWeekChange(week)}
+            disabled={isDisabled}
+            className={buttonClass}
+          >
+            <p className={css.weekNumbers}>{week}</p>
+            <p className={css.weekText}>Тиждень</p>
+          </button>
+        );
+      })}
     </div>
   );
-}  
+}
