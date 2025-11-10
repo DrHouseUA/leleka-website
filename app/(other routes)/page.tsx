@@ -20,10 +20,15 @@ export default function Home() {
             <MomTipCard />
           </div>
 
+
           <TaskReminderCard />
           <FeelingCard />
+          <div>
+            <TaskReminderCard />
+            <FeelingCard />
+          </div>
+          <div>тут буде Den секція</div> main
         </div>
-        <div>тут буде Den секція</div>
       </main>
     </div>
   );

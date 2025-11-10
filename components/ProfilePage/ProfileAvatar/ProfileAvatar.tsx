@@ -9,7 +9,6 @@ export default function ProfileAvatar() {
   return (
     <div className={css.container}>
       <div className={css.avatarImage}>
-        {" "}
         <Image
           src={
             user?.avatarUrl ??
@@ -24,8 +23,8 @@ export default function ProfileAvatar() {
       <div className={css.userInfo}>
         <div className={css.userName}>Ganna</div>
         <div className={css.userEmail}>Email</div>
+        <button className={css.downloadAvatar}>Завантажити нове фото</button>
       </div>
-      <button className={css.downloadAvatar}>Завантажити</button>
     </div>
   );
 }

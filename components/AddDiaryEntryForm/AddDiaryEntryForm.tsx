@@ -34,7 +34,7 @@ const diaryValidationSchema = Yup.object().shape({
   title: Yup.string()
     .required("Введіть заголовок")
     .max(100, "Максимум 100 символів"),
-  categories: Yup.array().min(1, "Оберіть хоча б одну категорію"),
+  emotions: Yup.array().min(1, "Оберіть хоча б одну категорію"),
   description: Yup.string()
     .required("Поле запису не може бути порожнім")
     .max(1000, "Максимум 1000 символів"),
@@ -110,7 +110,7 @@ export default function AddDiaryEntryForm() {
         </div>
 
         <div className={css.formGroup}>
-          <label className={css.labelText} htmlFor={`${fieldId}-categories`}>
+          <label className={css.labelText} htmlFor={`${fieldId}-emotions`}>
             Категорії
           </label>
 
@@ -121,6 +121,7 @@ export default function AddDiaryEntryForm() {
                 name={field.name}
                 value={field.value}
                 onChange={(value) => form.setFieldValue(field.name, value)}
+                onBlur={() => form.setFieldTouched(field.name)}
                 loadOptions={async () => {
                   const { emotions } = await fetchEmotions();
                   return emotions;
@@ -133,7 +134,7 @@ export default function AddDiaryEntryForm() {
             )}
           </Field>
           <ErrorMessage
-            name="categories"
+            name="emotions"
             component="span"
             className={css.error}
           />

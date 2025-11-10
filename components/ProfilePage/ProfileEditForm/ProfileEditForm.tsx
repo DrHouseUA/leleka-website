@@ -1,8 +1,10 @@
 "use client";
+
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FieldProps } from "formik";
 import styles from "./ProfileEditForm.module.css";
 import { useId } from "react";
+import Select from "@/components/SelectComponent/Select";
 
 export type Gender = "Чоловіча" | "Жіноча" | "";
 
@@ -11,6 +13,11 @@ export interface ProfileFormValues {
   email: string;
   gender: Gender;
   dueDate: string;
+}
+
+interface GenderOption {
+  value: Exclude<Gender, "">; // тільки "Чоловіча" або "Жіноча"
+  label: string;
 }
 
 export const profileValidationSchema = Yup.object({
@@ -26,8 +33,8 @@ export const profileValidationSchema = Yup.object({
 
 export default function ProfileEditForm() {
   const fieldId = useId();
-  const handleSubmit = () => {
-    console.log("send form values");
+  const handleSubmit = (values: ProfileFormValues) => {
+    console.log("send form values", values);
   };
 
   return (
@@ -42,14 +49,19 @@ export default function ProfileEditForm() {
             <label htmlFor="name" className={styles.profilelabel}>
               Ім’я
             </label>
-            <Field
-              as="input"
-              name="name"
-              type="text"
-              placeholder="Ім'я зареєстрованого користувача"
-              className={styles.profileinput}
-              id={`${fieldId}-username`}
-            />
+            <Field name="name">
+              {({ field, meta }: FieldProps<string, ProfileFormValues>) => (
+                <input
+                  {...field}
+                  type="text"
+                  placeholder="Ім'я зареєстрованого користувача"
+                  id={`${fieldId}-username`}
+                  className={`${styles.profileinput} ${
+                    meta.touched && meta.error ? styles.inputError : ""
+                  }`}
+                />
+              )}
+            </Field>
             <ErrorMessage
               name="name"
               component="div"
@@ -61,18 +73,23 @@ export default function ProfileEditForm() {
             <label htmlFor="email" className={styles.profilelabel}>
               Пошта
             </label>
-            <Field
-              as="input"
-              name="email"
-              type="email"
-              placeholder="Пошта зареєстрованого користувача"
-              className={styles.profileinput}
-              id={`${fieldId}-useremail`}
-            />
+            <Field name="email">
+              {({ field, meta }: FieldProps<string, ProfileFormValues>) => (
+                <input
+                  {...field}
+                  type="email"
+                  placeholder="Пошта зареєстрованого користувача"
+                  id={`${fieldId}-useremail`}
+                  className={`${styles.profileinput} ${
+                    meta.touched && meta.error ? styles.inputError : ""
+                  }`}
+                />
+              )}
+            </Field>
             <ErrorMessage
               name="email"
               component="div"
-              className={styles.profileerror}
+              className={styles.error}
             />
           </div>
 
@@ -80,20 +97,49 @@ export default function ProfileEditForm() {
             <label htmlFor="gender" className={styles.profilelabel}>
               Стать дитини
             </label>
-            <Field
-              name="gender"
-              as="select"
-              className={styles.profileselect}
-              id={`${fieldId}-babyGender`}
-            >
-              <option value="">Оберіть стать</option>
-              <option value="Чоловіча">Хлопчик</option>
-              <option value="Жіноча">Дівчинка</option>
+
+            <Field name="gender">
+              {({
+                field,
+                form,
+                meta,
+              }: FieldProps<Gender, ProfileFormValues>) => {
+                const options: GenderOption[] = [
+                  { value: "Чоловіча", label: "Хлопчик" },
+                  { value: "Жіноча", label: "Дівчинка" },
+                ];
+
+                const loadOptions = (
+                  _inputValue: string,
+                  callback: (options: GenderOption[]) => void
+                ) => {
+                  callback(options);
+                };
+
+                const selectedOption =
+                  options.find((opt) => opt.value === field.value) || null;
+
+                return (
+                  <Select
+                    placeholder="Оберіть стать"
+                    name={field.name}
+                    loadOptions={loadOptions}
+                    value={selectedOption}
+                    closeMenuOnSelect
+                    onChange={(option) =>
+                      form.setFieldValue(field.name, option?.value)
+                    }
+                    onBlur={() => form.setFieldTouched(field.name)}
+                    hasError={meta.touched && !!meta.error}
+                  />
+                );
+              }}
             </Field>
+
             <ErrorMessage
               name="gender"
               component="div"
-              className={styles.profileerror}
+              className={styles.error}
             />
           </div>
 
@@ -101,17 +147,18 @@ export default function ProfileEditForm() {
             <label htmlFor="dueDate" className={styles.profilelabel}>
               Планова дата пологів
             </label>
-            <Field
-              name="dueDate"
-              type="date"
-              className={styles.profileinput}
-              id={`${fieldId}-userDate`}
-            />
-            <ErrorMessage
-              name="dueDate"
-              component="div"
-              className={styles.profileerror}
-            />
+            <Field name="dueDate">
+              {({ field, meta }: FieldProps<string, ProfileFormValues>) => (
+                <input
+                  {...field}
+                  type="date"
+                  id={`${fieldId}-userDate`}
+                  className={`${styles.profileselectDate} ${
+                    meta.touched && meta.error ? styles.inputError : ""
+                  }`}
+                />
+              )}
+            </Field>
           </div>
 
           <div className={styles.profileactions}>

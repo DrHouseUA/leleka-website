@@ -9,14 +9,13 @@ export default function Select<
   const { hasError, ...rest } = props;
   return (
     <AsyncSelect
+      closeMenuOnSelect={false}
       {...rest}
       {...props}
       defaultOptions
       unstyled
-      closeMenuOnSelect={false}
       hideSelectedOptions={false}
       backspaceRemovesValue={false}
-      menuPortalTarget={document.body}
       maxMenuHeight={220}
       isClearable={false}
       isSearchable={false}
@@ -46,7 +45,7 @@ export default function Select<
         ),
         Option: (props) => (
           <components.Option {...props}>
-            <Checkbox isChecked={props.isSelected} />
+            {props.isMulti && <Checkbox isChecked={props.isSelected} />}
             <span>{props.label}</span>
           </components.Option>
         ),
@@ -54,7 +53,7 @@ export default function Select<
       styles={{
         container: (styles) => ({
           ...styles,
-          zIndex: 9999,
+          zIndex: 9,
           fontSize: "14px",
           "@media only screen and (min-width: 1440px)": {
             fontSize: "16px",
