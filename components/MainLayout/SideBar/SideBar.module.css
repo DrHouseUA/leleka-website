@@ -49,7 +49,7 @@
 
 @media (min-width: 1440px) {
   .header {
-    padding: 24px 16px;
+    padding: 24px;
   }
 }
 
@@ -135,6 +135,12 @@
 
 .footer {
   padding: 16px 16px 24px 16px;
+}
+
+@media (min-width: 1440px) {
+  .footer {
+    padding: 24px 16px;
+  }
 }
 
 .wrapperuser {
