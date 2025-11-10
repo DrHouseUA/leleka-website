@@ -1,16 +1,16 @@
-.weekSelectorContainer {
+/* .weekSelectorContainer {
   width: 100%;
-  margin-top: 24px;
   padding-bottom: 16px;
-  display: flex; /* розташовує кнопки в ряд */
-  flex-wrap: nowrap; /* забороняємо переносити кнопки */
-  overflow-x: auto; /* горизонтальний скрол */
-  overflow-y: hidden; /* вертикальний скрол прихований */
-  width: 100%; /* контейнер на всю ширину сторінки */
-  max-width: 100%; /* забороняємо контейнеру рости більше екрана */
-  gap: 10px; /* відстань між кнопками */
-  padding: 10px; /* внутрішній відступ */
-  -webkit-overflow-scrolling: touch; /* плавний скрол на мобільних */
+  display: flex; /
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  width: 100%; 
+  max-width: 100%; 
+  gap: 10px; 
+  padding: 10px; 
+  -webkit-overflow-scrolling: touch; 
+  margin-bottom: 32px;
 }
 
 .weekSlide {
@@ -23,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 0px solid rgba(0, 0, 0, 0.15);
+  border: 0px solid var(--color-scheme-border);
   border-radius: 32px;
   padding: 16px;
   background-color: #fff4f6;
@@ -39,7 +39,7 @@
 }
 
 .weekButton:hover {
-  background-color: #ffe4e8;
+  background: var(--color-scheme-foreground);
 }
 
 .activatedButton {
@@ -47,10 +47,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 4px solid rgba(0, 0, 0, 0.15);
+  border: 4px solid var(--color-scheme-border);
   border-radius: 32px;
-  background-color: #ffcbd3;
-  padding: 12px;
+  background-color: var(--color-scheme-accent);
+  padding: 16px;
   width: 97px;
   height: 87px;
   box-sizing: border-box;
@@ -61,7 +61,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .currentButton {
@@ -69,8 +68,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff4f6;
-  border: 2px solid #ff6b9d;
+  background: var(--color-scheme-foreground);
+  border: 4px solid var(--color-scheme-foreground-alt);
   border-radius: 32px;
   padding: 16px;
   width: 97px;
@@ -89,8 +88,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #f2f2f2;
-  border: 0px solid rgba(0, 0, 0, 0.15);
+  background: var(--color-neutral-lightest);
+  opacity: 0.6;
+  border: 0px solid var(--color-scheme-border);
   border-radius: 32px;
   padding: 16px;
   width: 97px;
@@ -110,7 +110,7 @@
   line-height: 1.4;
   letter-spacing: 0.01em;
   text-align: center;
-  color: #000;
+  color: var(--color-scheme-text);
   font-family: "Comfortaa", sans-serif;
 }
 
@@ -119,7 +119,7 @@
   font-size: 14px;
   line-height: 1.5;
   text-align: center;
-  color: #000;
+    color: var(--color-scheme-text);
   font-family: "Lato", sans-serif;
 }
 
@@ -132,9 +132,185 @@
     font-size: 32px;
   }
 
-  /* ВИПРАВЛЕНО: прибрала обмеження ширини */
-  .weekSelectorContainer {
-    width: 100%;
+  .weekButton,
+  .activatedButton,
+  .currentButton,
+  .disabledBtn {
+    width: 97px;
+    height: 101px;
+  }
+} */
+.weekSelectorContainer {
+  width: 100%;
+  padding-bottom: 16px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  max-width: 100%;
+  gap: 10px;
+  padding: 10px;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 32px;
+  scroll-behavior: smooth;
+}
+
+/* Стилізація скролбара */
+.weekSelectorContainer::-webkit-scrollbar {
+  height: 6px;
+}
+
+.weekSelectorContainer::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.weekSelectorContainer::-webkit-scrollbar-thumb {
+  background: var(--color-scheme-foreground-alt);
+  border-radius: 10px;
+}
+
+.weekSelectorContainer::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scheme-foreground-alt);
+  opacity: 0.8;
+}
+
+/* Для Firefox */
+.weekSelectorContainer {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scheme-foreground-alt) transparent;
+}
+
+.weekSlide {
+  width: 97px;
+  flex-shrink: 0;
+}
+
+.weekButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid transparent;
+  /* прозорий border завжди */
+  border-radius: 32px;
+  padding: 16px;
+  background-color: #fff4f6;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* повільніший перехід */
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  will-change: transform, background-color, border-color;
+  /* оптимізація анімації */
+}
+
+.weekButton:hover {
+  background: var(--color-scheme-foreground);
+  transform: translateY(-2px);
+}
+
+.activatedButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--color-scheme-border);
+  border-radius: 32px;
+  background-color: var(--color-scheme-accent);
+  padding: 16px;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transform: scale(1.03);
+  /* менший scale для плавності */
+  will-change: transform, background-color, border-color;
+}
+
+.currentButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-scheme-foreground);
+  border: 4px solid var(--color-scheme-foreground-alt);
+  border-radius: 32px;
+  padding: 16px;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  will-change: transform, background-color, border-color;
+}
+
+.disabledBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-neutral-lightest);
+  border: 4px solid transparent;
+  /* прозорий border */
+  border-radius: 32px;
+  padding: 16px;
+  width: 97px;
+  height: 87px;
+  box-sizing: border-box;
+  opacity: 0.6;
+  cursor: not-allowed;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity;
+}
+
+.weekNumbers {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--color-scheme-text);
+  font-family: "Comfortaa", sans-serif;
+  transition: all 0.4s ease;
+}
+
+.weekText {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-scheme-text);
+  font-family: "Lato", sans-serif;
+  transition: all 0.4s ease;
+}
+
+@media screen and (min-width: 1440px) {
+  .weekText {
+    font-size: 16px;
+  }
+
+  .weekNumbers {
+    font-size: 32px;
   }
 
   .weekButton,

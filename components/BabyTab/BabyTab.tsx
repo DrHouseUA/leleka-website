@@ -32,7 +32,7 @@ export default function BabyTab({ data }: BabyTabProps) {
 
         <div className={css.interestingFacts}>
           <div className={css.titleLogoFacts}>
-            <svg className={css.factsIcon}>
+            <svg width={24} height={24}  className={css.factsIcon}>
               <use href="/leleka-sprite.svg#icon-star_shine" />
             </svg>
             <h4>Цікавий факт тижня</h4>

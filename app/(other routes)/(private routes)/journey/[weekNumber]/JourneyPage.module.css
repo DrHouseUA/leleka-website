@@ -1,0 +1,29 @@
+.journeySection {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.journeyContainer {
+  min-width: 320px;
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media only screen and (max-width: 374px) {
+  .journeyContainer {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .journeyContainer {
+    max-width: 768px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    .journeyContainer {
+      max-width: 1440px;
+    }
+  }
+}

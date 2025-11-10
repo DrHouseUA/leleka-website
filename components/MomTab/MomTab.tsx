@@ -18,7 +18,7 @@ const CategoryIcon = ({ category }: { category: string }) => {
   const iconId = getIconId(category);
 
   return (
-    <svg className={css.adviceIcon} aria-hidden="true">
+    <svg width={24} height={24} className={css.adviceIcon} aria-hidden="true">
       <use href={`/leleka-sprite.svg#${iconId}`} />
     </svg>
   );

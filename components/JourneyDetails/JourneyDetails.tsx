@@ -40,8 +40,8 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
   const error = activeTab === "baby" ? babyError : momError;
 
   return (
-    <section className={css.journeyDetailsSection}>
-      <div className={css.tabsContainer}>
+    <div className={css.journeyDetailsWrapper}>
+      <div className={css.tabsWrapper}>
         <button
           onClick={() => setActiveTab("baby")}
           className={activeTab === "baby" ? css.tabButtonActive : css.tabButton}
@@ -56,24 +56,27 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
         </button>
       </div>
 
-      {isLoading && (
-        <div className={css.loaderContainer}>
-          <div className={css.spinner} />
-        </div>
-      )}
+      {/* Контент ВСЕРЕДИНІ блакитного контейнера */}
+      <div className={css.contentContainer}>
+        {isLoading && (
+          <div className={css.loaderContainer}>
+            <div className={css.spinner} />
+          </div>
+        )}
 
-      {error && (
-        <div className={css.errorMessage}>
-          Помилка завантаження даних. Спробуйте ще раз.
-        </div>
-      )}
+        {error && (
+          <div className={css.errorMessage}>
+            Помилка завантаження даних. Спробуйте ще раз.
+          </div>
+        )}
 
-      {!isLoading && !error && (
-        <>
-          {activeTab === "baby" && babyData && <BabyTab data={babyData} />}
-          {activeTab === "mom" && momData && <MomTab data={momData} />}
-        </>
-      )}
-    </section>
+        {!isLoading && !error && (
+          <>
+            {activeTab === "baby" && babyData && <BabyTab data={babyData} />}
+            {activeTab === "mom" && momData && <MomTab data={momData} />}
+          </>
+        )}
+      </div>
+    </div>
   );
 }

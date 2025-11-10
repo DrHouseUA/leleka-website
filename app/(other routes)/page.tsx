@@ -19,7 +19,7 @@ export default function Home() {
             <BabyTodayCard />
             <MomTipCard />
           </div>
-        <div>
+
           <TaskReminderCard />
           <FeelingCard />
         </div>
