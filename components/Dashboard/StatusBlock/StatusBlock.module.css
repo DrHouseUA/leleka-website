@@ -3,11 +3,13 @@
   align-items: center;
   flex-direction: row;
   gap: 16px;
+  margin-bottom: 16px;
 }
 
 @media only screen and (min-width: 768px) {
   .block {
     gap: 32px;
+    margin-bottom: 32px;
   }
 }
 
@@ -30,6 +32,13 @@
   }
 }
 
+@media only screen and (min-width: 1440px) {
+  .wrapper {
+    width: 305px;
+    height: 127px;
+  }
+}
+
 .label {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -37,6 +46,13 @@
   line-height: 1.5;
   color: #000;
 }
+
+@media only screen and (min-width: 1440px) {
+  .label {
+    font-size: 16px;
+  }
+}
+
 .value {
   font-family: "Comfortaa", sans-serif;
   font-weight: 700;
@@ -44,4 +60,10 @@
   line-height: 1.2;
   letter-spacing: 0.01em;
   color: #000;
+}
+
+@media only screen and (min-width: 1440px) {
+  .value {
+    font-size: 56px;
+  }
 }

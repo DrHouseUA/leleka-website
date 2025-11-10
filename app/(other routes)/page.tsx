@@ -7,15 +7,18 @@ import GreetingBlock from "@/components/Dashboard/GreetingBlock/GreetingBlock";
 export default function Home() {
   return (
     <div className={styles.page}>
+      <GreetingBlock />
       <main className={styles.main}>
-        <div className={styles.greetingstatus}>
-          <GreetingBlock />
-          <StatusBlock />
+        <div>
+          <div className={styles.greetingstatus}>
+            <StatusBlock />
+          </div>
+          <div className={styles.babytodaymomtip}>
+            <BabyTodayCard />
+            <MomTipCard />
+          </div>
         </div>
-        <div className={styles.babytodaymomtip}>
-          <BabyTodayCard />
-          <MomTipCard />
-        </div>
+        <div>тут буде Den секція</div>
       </main>
     </div>
   );

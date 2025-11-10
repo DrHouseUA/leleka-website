@@ -57,8 +57,8 @@ export default function BabyTodayCard() {
             <span className={css.infotext}>{baby.babyActivity}</span>
           </p>
         </div>
-        <p className={css.infotext}>{baby.babyDevelopment}</p>
       </div>
+      <p className={css.infotext}>{baby.babyDevelopment}</p>
     </div>
   );
 }

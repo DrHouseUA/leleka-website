@@ -1,7 +1,14 @@
 .main {
   margin: 0 auto;
-  /* display: flex; */
+  display: flex;
   height: 100vh;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 1440px) {
+  .main {
+    justify-content: flex-start;
+  }
 }
 
 .main-content {
@@ -21,7 +28,10 @@
   .main-content {
     display: flex;
     flex-direction: column;
-    padding: 16px 32px;
+    padding: 0px 32px;
+
+    height: 900px;
+    overflow: hidden;
   }
 
   .nav-wrapper {

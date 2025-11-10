@@ -18,7 +18,7 @@ export default function GreetingBlock() {
   if (isError || !user?.name) {
     return (
       <div className={css.block}>
-        <p className={css.error}>Доброго дня!</p>
+        <p className={css.title}>Доброго дня!</p>
       </div>
     );
   }
