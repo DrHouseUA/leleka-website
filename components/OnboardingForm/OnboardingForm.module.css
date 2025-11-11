@@ -1,6 +1,6 @@
 .titleContent {
   margin: 57px 56px 32px;
-  font-family: "Comfortaa", sans-serif;
+  font-family: var(--second-family);
   font-weight: 700;
   font-size: 48px;
   line-height: 120%;
