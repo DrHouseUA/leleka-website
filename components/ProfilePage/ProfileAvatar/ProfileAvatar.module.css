@@ -1,12 +1,11 @@
 .container {
-  padding: 0 20px;
   max-width: 375px;
 }
 
 @media screen and (min-width: 768px) {
   .container {
     display: flex;
-    padding: 0 32px;
+
     min-width: 644px;
     max-width: 768px;
     gap: 12px;
@@ -15,7 +14,6 @@
 
 @media screen and (min-width: 1440px) {
   .container {
-    padding: 0 32px;
     min-width: 644px;
     max-width: 644px;
   }
