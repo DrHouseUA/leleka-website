@@ -1,5 +1,6 @@
 import { MomDetails } from "@/types/journey";
 import css from "./MomTab.module.css";
+import TaskReminderCard from "../TasksReminderCard/TaskReminderCard";
 
 interface MomTabProps {
   data: MomDetails;
@@ -61,10 +62,9 @@ export default function MomTab({ data }: MomTabProps) {
         </div>
       </div>
 
-      {/* Тут можна додати TasksReminderCard */}
-      {/* <div className={css.taskBlock}>
-        <TasksReminderCard />
-      </div> */}
+      <div>
+        <TaskReminderCard />
+      </div>
     </div>
   );
 }

@@ -9,7 +9,8 @@ import { getGreeting } from "@/lib/api/clientApi";
 import WeekSelector from "@/components/WeekSelector/WeekSelector";
 import JourneyDetails from "@/components/JourneyDetails/JourneyDetails";
 import GreetingBlock from "@/components/Dashboard/GreetingBlock/GreetingBlock";
-import css from "./JourneyPage.module.css";
+import Loading from "@/app/loading";
+
 
 export default function JourneyPage() {
   const params = useParams();
@@ -40,15 +41,13 @@ export default function JourneyPage() {
     router.push(`/journey/${week}`);
   };
 
-  if (isLoading) return <div>Завантаження...</div>;
-  if (!isAuthenticated)
-    return <div>⚠️ Будь ласка, увійдіть, щоб побачити сторінку подорожі.</div>;
-
+  if (isLoading) return <Loading/>;
+  
   return (
     <>
       <GreetingBlock />
-      <section className={css.journeySection}>
-        <div className={css.journeyContainer}>
+      <section>
+        <div >
           <WeekSelector
             currentWeek={greeting?.curWeekToPregnant || 1}
             selectedWeek={selectedWeek}

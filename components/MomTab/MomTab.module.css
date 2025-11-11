@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  padding: 24px;
   box-sizing: border-box;
 }
 
@@ -116,7 +115,7 @@
 @media screen and (min-width: 768px) {
   .momTabContainer {
     grid-template-columns: 1fr;
-    padding: 24px;
+    
   }
 
   .howYouCanFeel,
@@ -129,7 +128,6 @@
   .momTabContainer {
     grid-template-columns: 1.7fr 1.5fr;
     align-items: start;
-    padding: 32px;
     gap: 32px;
     width: 1064px;
     height: 540px;

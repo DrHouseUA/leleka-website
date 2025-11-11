@@ -73,18 +73,10 @@
     font-size: 18px;
   }
 
-  .tabButtonActive {
-    background: #ffdae0;
-  }
+  
 }
 
-.errorMessage {
-  color: #c60000;
-  text-align: center;
-  padding: 16px;
-  font-size: 16px;
-  font-family: "Lato", sans-serif;
-}
+
 
 .loaderContainer {
   display: flex;
@@ -96,8 +88,8 @@
 .spinner {
   width: 48px;
   height: 48px;
-  border: 3px solid #fff4f6;
-  border-top-color: #ffcbd3;
+  border: 3px solid var(--color-scheme-foreground);
+  border-top-color: var(--color-scheme-accent);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
