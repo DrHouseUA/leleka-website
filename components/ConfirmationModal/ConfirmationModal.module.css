@@ -7,20 +7,24 @@
 
   justify-content: center;
   z-index: 10;
+
+  animation: fadeIn 0.25s ease forwards;
+  backdrop-filter: blur(3px);
 }
 
 .modal {
-  position: relative;
-  background: #ffffff;
+  background: #fff;
   text-align: center;
-
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   border-radius: 40px;
   padding: 64px 20px;
 
   width: 335px;
   height: 413px;
   max-width: 768px;
-  background: #fff;
+
+  position: relative;
+  animation: popUp 0.3s ease forwards;
 }
 
 @media only screen and (min-width: 768px) {
@@ -144,5 +148,25 @@
   .confirmBtn {
     height: 46px;
     font-size: 16px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

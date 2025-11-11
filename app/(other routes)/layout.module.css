@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column;
   max-width: 100%;
+  padding: 0px 20px;
 }
 
 .nav-wrapper {
@@ -27,10 +28,14 @@
   margin-bottom: 16px;
 }
 
+@media (min-width: 768px) {
+  .main-content {
+    padding: 0px 32px;
+  }
+}
+
 @media (min-width: 1440px) {
   .main-content {
-    display: flex;
-    flex-direction: column;
     padding: 0px 32px;
 
     height: 900px;
