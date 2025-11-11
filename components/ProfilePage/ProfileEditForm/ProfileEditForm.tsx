@@ -1,10 +1,14 @@
 "use client";
 
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage, FieldProps } from "formik";
+import { Formik, Form, Field, ErrorMessage, FieldProps, FormikHelpers } from "formik";
 import styles from "./ProfileEditForm.module.css";
 import { useId } from "react";
 import Select from "@/components/SelectComponent/Select";
+import { useState } from "react";
+import { useAuthStore } from "@/lib/store/authStore";
+import { updateUser } from "@/lib/api/clientApi";
+import { UserData } from "@/types/user";
 
 export type Gender = "Чоловіча" | "Жіноча" | "Невідомо" | "";
 
@@ -33,8 +37,63 @@ export const profileValidationSchema = Yup.object({
 
 export default function ProfileEditForm() {
   const fieldId = useId();
-  const handleSubmit = (values: ProfileFormValues) => {
-    console.log("send form values", values);
+ };
+
+  const user = useAuthStore((s) => s.user);
+  const setUser = useAuthStore((s) => s.setUser);
+
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  // мапа з UI значення -> бекенд енум
+  const mapBabyGenderToBackend = (g: Gender): "girl" | "boy" | "unknown" => {
+    if (g === "Чоловіча") return "boy";
+    if (g === "Жіноча") return "girl";
+    return "unknown";
+  };
+
+  const handleSubmit = async (
+    values: ProfileFormValues,
+    { setSubmitting }: FormikHelpers<ProfileFormValues>
+  ) => {
+    setSubmitError(null);
+    setSuccessMessage(null);
+    setSubmitting(true);
+
+    try {
+      // Підготуйте payload відповідно до бекенду
+      const payload: Record<string, unknown> = {
+        name: values.name,
+        email: values.email,
+        // бекенд чекає babyGender як "girl" | "boy" | "unknown"
+        babyGender: mapBabyGenderToBackend(values.babyGender),
+        dueDate: values.dueDate,
+      };
+      console.log(payload);
+      // Виклик API через Next.js proxy (updateUser)
+      const updatedUser = await updateUser(payload);
+
+      // Оновлюємо локальний Zustand-юзер (мердж з повернутими даними)
+      setUser({ ...user, ...updatedUser } as UserData);
+
+      setSuccessMessage("Профіль успішно оновлено");
+    } catch (err: unknown) {
+      let message = "Помилка при збереженні";
+
+      if (typeof err === "string") {
+        message = err;
+      } else if (err && typeof err === "object") {
+        const e = err as {
+          response?: { data?: { message?: string } };
+          message?: string;
+        };
+        message = e.response?.data?.message ?? e.message ?? message;
+      }
+
+      setSubmitError(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
