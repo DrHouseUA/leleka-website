@@ -1,6 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import css from "./JourneyDetails.module.css";
 import { useJourneyStore } from "@/lib/store/journeyStore";
 import { getBabyDetails, getMomDetails } from "@/lib/api/clientApi";
@@ -36,11 +38,25 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
     staleTime: 5 * 60 * 1000,
   });
 
+  // Показуємо toast при помилці
+  useEffect(() => {
+    if (babyError && activeTab === "baby") {
+      toast.error("Помилка завантаження даних про малюка. Спробуйте ще раз.");
+    }
+  }, [babyError, activeTab]);
+
+  useEffect(() => {
+    if (momError && activeTab === "mom") {
+      toast.error("Помилка завантаження даних про маму. Спробуйте ще раз.");
+    }
+  }, [momError, activeTab]);
+
   const isLoading = activeTab === "baby" ? babyLoading : momLoading;
-  const error = activeTab === "baby" ? babyError : momError;
 
   return (
     <div className={css.journeyDetailsWrapper}>
+      <Toaster position="top-right" />
+      
       <div className={css.tabsWrapper}>
         <button
           onClick={() => setActiveTab("baby")}
@@ -56,7 +72,6 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
         </button>
       </div>
 
-      {/* Контент ВСЕРЕДИНІ блакитного контейнера */}
       <div className={css.contentContainer}>
         {isLoading && (
           <div className={css.loaderContainer}>
@@ -64,13 +79,7 @@ export default function JourneyDetails({ weekNumber }: JourneyDetailsProps) {
           </div>
         )}
 
-        {error && (
-          <div className={css.errorMessage}>
-            Помилка завантаження даних. Спробуйте ще раз.
-          </div>
-        )}
-
-        {!isLoading && !error && (
+        {!isLoading && (
           <>
             {activeTab === "baby" && babyData && <BabyTab data={babyData} />}
             {activeTab === "mom" && momData && <MomTab data={momData} />}
