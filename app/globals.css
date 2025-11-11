@@ -57,6 +57,10 @@
   --color-french-pass-lighter: #e5fafe;
   --color-french-pass-lightest: #fbfefe;
   --color-red: #c60000;
+  --bg-accent: #fefbf4;
+  --bg-accent-high: #fef1db;
+  --accent-ui: #feeccc;
+  --accent-ui-scroll: #feeccccc;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -100,3 +104,28 @@ body {
     color-scheme: dark;
   }
 } */
+
+html[data-theme="blue"],
+.theme--boy {
+  --bg-accent: #e5fafe;
+  --bg-accent-high: #c4f2fe;
+  --accent-ui: #adeffe;
+  --accent-ui-scroll: #adeffecc;
+}
+
+html[data-theme="pink"],
+.theme--girl {
+  --bg-accent: #fff4f6;
+  --bg-accent-high: #ffdae0;
+  --accent-ui: #ffcbd3;
+  --accent-ui-scroll: #ffcbd3cc;
+}
+
+html[data-theme="neutral"],
+.theme--neutral,
+.theme--unknown {
+  --bg-accent: #fefbf4;
+  --bg-accent-high: #fef1db;
+  --accent-ui: #feeccc;
+  --accent-ui-scroll: #feeccccc;
+}

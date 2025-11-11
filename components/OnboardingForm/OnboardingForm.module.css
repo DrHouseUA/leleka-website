@@ -1,0 +1,155 @@
+.titleContent {
+  margin: 57px 56px 32px;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 120%;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #000;
+  width: 480px;
+}
+
+.form {
+  width: 480px;
+  margin: 0 auto;
+}
+
+.formField {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.selectGender {
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 12px;
+  padding: 8px 12px;
+  height: 40px;
+  background: #f2f2f2;
+
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #7f7f7f;
+}
+
+.labelbirthDate {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000;
+}
+
+.input {
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 12px;
+  padding: 8px 12px;
+  width: 100%;
+  height: 40px;
+  background: #f2f2f2;
+
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #7f7f7f;
+
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.input:hover,
+.input:focus {
+  border-color: #e9708d;
+}
+
+.submitButton {
+  margin-top: 32px;
+  border: 0px;
+  border-bottom: 4px solid var(--accent-ui);
+  border-radius: 100px;
+  padding: 10px 24px;
+  width: 480px;
+  height: 46px;
+  background: var(--bg-accent-high);
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 160%;
+  color: #000;
+}
+
+.submitButton[data-gender="boy"] {
+  background-color: #c4f2fe;
+  border-bottom: 4px solid #adeffe;
+}
+
+.submitButton[data-gender="girl"] {
+  background-color: #ffdae0;
+  border-bottom: 4px solid #ffcbd3;
+}
+
+.submitButton[data-gender="unknown"] {
+  background-color: #fef1db;
+  border-bottom: 4px solid #feeccc;
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.selectGender {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -20px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #c60000;
+}
+
+.apiError {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #c60000;
+}
+
+@media screen and (max-width: 1439px) {
+  .titleContent {
+    font-size: 36px;
+    line-height: 120%;
+    letter-spacing: 0.01em;
+    margin-top: 110px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .titleContent {
+    width: 335px;
+    margin-top: 30px;
+  }
+
+  .form {
+    width: 335px;
+  }
+
+  .submitButton {
+    width: 335px;
+  }
+}

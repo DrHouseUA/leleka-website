@@ -11,21 +11,19 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-
+  border: 0px;
   border-bottom: 4px solid rgba(0, 0, 0, 0.15);
   border-radius: 100px;
   padding: 8px 20px;
   width: 179px;
   height: 42px;
   background: rgba(0, 0, 0, 0.05);
-
   font-family: "Lato", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 160%;
   color: #000;
 
-  cursor: pointer;
 }
 .avatarImage {
   border-radius: 100%;

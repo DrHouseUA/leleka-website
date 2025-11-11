@@ -30,11 +30,18 @@
   }
 }
 .logo {
-  margin-top: 22px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
 }
+
 .header {
   position: absolute;
-  height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
 }
 
 .title {
@@ -212,5 +219,6 @@
 @media (min-width: 1440px) {
   .image {
     display: block;
+    height: 100vh;
   }
 }

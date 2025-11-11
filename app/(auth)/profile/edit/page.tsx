@@ -24,10 +24,9 @@ export default function OnboardingProfilePage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <Link href={"/"}>
-          <svg className={styles.logo} width={105} height={45}>
-            <use href="#logo-white" />
-          </svg>
+        <Link href="/" className={styles.logo}>
+          <Image src="/logo.svg" alt="Logo" width={30} height={30} />
+          <Image src="/logotext.svg" alt="Logotext" width={60} height={13} />
         </Link>
       </header>
 

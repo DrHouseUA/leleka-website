@@ -36,13 +36,10 @@ export default function ProfileAvatar() {
     <div className={css.avatarSection}>
       <>
         <Image
-          src={
-            user?.avatarUrl ??
-            `https://ftp.goit.study/img/common/women-default-avatar.jpg`
-          }
+          src={"/avatar_image.png"}
+          alt={"user avatar"}
           height={132}
           width={132}
-          alt="user avatar"
           className={css.avatarImage}
         />
         <div className={css.profileInfo}>

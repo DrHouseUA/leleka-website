@@ -20,10 +20,9 @@
   padding-left: 20px;
   position: relative;
   height: 100%;
-  color: var(--color-scheme-text);
 }
 
-/* Tablet devices */
+/*  Tablet  */
 @media only screen and (min-width: 768px) {
   .container {
     max-width: 768px;
@@ -31,7 +30,7 @@
     padding-left: 32px;
   }
 }
-/* Desktop devices */
+/* Desktop  */
 @media only screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;
@@ -43,10 +42,19 @@
     padding: 0 64px;
   }
 }
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
 .header {
-  height: 72px;
+  position: absolute;
+  margin: 0 auto;
   display: flex;
   align-items: center;
+  margin: 25px 0;
 }
 
 .title {

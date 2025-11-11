@@ -54,12 +54,12 @@ const LoginForm = () => {
   return (
     <div className={css.container}>
       <header className={css.header}>
-        <Link href={"/"}>
-          <svg width={95} height={30}>
-            <use href="#logo-white" />
-          </svg>
-        </Link>
+        <Link href="/" className={css.logo}>
+        <Image src="/logo.svg" alt="Logo" width={30} height={30} />
+        <Image src="/logotext.svg" alt="Logotext" width={60} height={13} />
+      </Link>
       </header>
+
       <div className={css.pageWrapper}>
         <div className={css.formWrapper}>
           <h1 className={css.title}>Вхід</h1>
