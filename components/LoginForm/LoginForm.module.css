@@ -155,6 +155,7 @@
   flex-direction: row;
   width: 335px;
   height: 42px;
+  border: 0;
   border-bottom: 4px solid var(--accent-ui);
   border-radius: 100px;
   padding: 10px 24px;
