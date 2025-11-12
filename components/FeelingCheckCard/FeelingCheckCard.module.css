@@ -8,6 +8,7 @@
   padding: 24px;
   max-width: 335px;
   height: auto;
+  margin-bottom: 32px;
 }
 
 .title {
@@ -95,7 +96,7 @@
     font-size: 16px;
   }
 
-.text{
-  font-size: 16px;
-}
+  .text {
+    font-size: 16px;
+  }
 }
