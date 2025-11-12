@@ -10,11 +10,12 @@ import { useEffect, useState } from "react";
 import ConfirmationModal from "@/components/ConfirmationModal/ConfirmationModal";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { getBabyData } from "@/lib/api/babyService";
 
 export default function SideBar() {
   const router = useRouter();
   const { isOpen, closeSidebar } = useSidebarStore();
-  const { user, clearIsAuthenticated } = useAuthStore();
+  const { user, clearIsAuthenticated, isAuthenticated } = useAuthStore();
   const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,16 +35,14 @@ export default function SideBar() {
   const handleConfirmLogout = async () => {
     try {
       await logoutRequest();
-      clearIsAuthenticated();
+
       closeSidebar();
+      clearIsAuthenticated();
+      getBabyData(isAuthenticated);
 
       toast.success("Ви успішно вийшли з акаунту!");
 
       router.push("/");
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 300);
     } catch (error) {
       console.error("Помилка виходу:", error);
       toast.error("Сталася помилка при виході. Спробуйте ще раз!");
@@ -97,48 +96,63 @@ export default function SideBar() {
             <nav className={css.nav}>
               <ul className={css.navList}>
                 <li className={css.navItem}>
-                  <Image src="/myday.svg" alt="Close" width={24} height={24} />
                   <Link
                     className={css.navLink}
                     href={"/"}
                     onClick={handleLinkClick}
                   >
-                    Мій день
+                    <Image
+                      src="/myday.svg"
+                      alt="Close"
+                      width={24}
+                      height={24}
+                    />
+                    <span className={css.navText}>Мій день</span>
                   </Link>
                 </li>
                 <li className={css.navItem}>
-                  <Image src="/travel.svg" alt="Close" width={24} height={24} />
                   <Link
                     className={css.navLink}
                     href={"/journey/1"}
                     onClick={handleLinkClick}
                   >
-                    Подорож
+                    <Image
+                      src="/travel.svg"
+                      alt="Close"
+                      width={24}
+                      height={24}
+                    />
+                    <span className={css.navText}>Подорож</span>
                   </Link>
                 </li>
                 <li className={css.navItem}>
-                  <Image src="/diary.svg" alt="Close" width={24} height={24} />
                   <Link
                     className={css.navLink}
                     href={"/diary"}
                     onClick={handleLinkClick}
                   >
-                    Щоденник
+                    <Image
+                      src="/diary.svg"
+                      alt="Close"
+                      width={24}
+                      height={24}
+                    />
+                    <span className={css.navText}>Щоденник</span>
                   </Link>
                 </li>
                 <li className={css.navItem}>
-                  <Image
-                    src="/profile.svg"
-                    alt="Close"
-                    width={24}
-                    height={24}
-                  />
                   <Link
                     className={css.navLink}
                     href={"/profile"}
                     onClick={handleLinkClick}
                   >
-                    Профіль
+                    <Image
+                      src="/profile.svg"
+                      alt="Close"
+                      width={24}
+                      height={24}
+                    />
+                    <span className={css.navText}>Профіль</span>
                   </Link>
                 </li>
               </ul>

@@ -3,24 +3,24 @@
 import { useQuery } from "@tanstack/react-query";
 import css from "./StatusBlock.module.css";
 import { getBabyData } from "@/lib/api/babyService";
-// import { useAuth } from "@/hooks/useAuth";
 import { useAuthStore } from "@/lib/store/authStore";
 
 export default function StatusBlock() {
   const { isAuthenticated } = useAuthStore();
-  const { data, isLoading, isError } = useQuery({
+  const { data, isError } = useQuery({
     queryKey: ["babyData"],
     queryFn: () => getBabyData(isAuthenticated),
   });
 
-  if (isLoading) {
-    return <p className={css.loading}>Loading...</p>;
-  }
-
   if (isError || !data?.data) {
     return (
       <div className={css.block}>
-        <p className={css.error}>Не вдалося завантажити статус</p>
+        <div className={css.wrapper}>
+          <p className={css.error}>Не вдалося завантажити статус</p>
+        </div>
+        <div className={css.wrapper}>
+          <p className={css.error}>Не вдалося завантажити статус</p>
+        </div>
       </div>
     );
   }

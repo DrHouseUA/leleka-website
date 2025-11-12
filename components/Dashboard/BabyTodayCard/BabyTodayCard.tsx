@@ -6,18 +6,13 @@ import css from "./BabyTodayCard.module.css";
 import type { BabyToday } from "@/types/baby";
 import { getBabyData } from "@/lib/api/babyService";
 import { useAuthStore } from "@/lib/store/authStore";
-// import { useAuth } from "@/hooks/useAuth";
 
 export default function BabyTodayCard() {
   const { isAuthenticated } = useAuthStore();
-  const { data, isLoading, isError } = useQuery({
+  const { data, isError } = useQuery({
     queryKey: ["babyData"],
     queryFn: () => getBabyData(isAuthenticated),
   });
-
-  if (isLoading) {
-    return <p className={css.loading}>Loading...</p>;
-  }
 
   if (isError || !data?.data?.babyToday) {
     return (
