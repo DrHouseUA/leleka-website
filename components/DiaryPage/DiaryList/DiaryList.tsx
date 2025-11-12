@@ -6,7 +6,12 @@ import DiaryEntryCard from "../DiaryEntryCard/DiaryEntryCard";
 import AddDiaryEntryModal from "@/components/AddDiaryEntryModal/AddDiaryEntryModal";
 import AddDiaryEntryForm from "@/components/AddDiaryEntryForm/AddDiaryEntryForm";
 import { fetchNotes, FetchNotesResponse } from "@/lib/api/diaryApi";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useNoteModalStore } from "@/lib/store/modalNoteStore";
 import { useSelectedNoteStore } from "@/lib/store/selectedNoteStore";
 
@@ -16,9 +21,19 @@ export default function DiaryList() {
 
   const { data } = useQuery<FetchNotesResponse>({
     queryKey: ["notes"],
-    queryFn: () => fetchNotes({ page: 1, limit: 100 }),
+    queryFn: async () => await fetchNotes({ page: 1, limit: 100 }),
     placeholderData: keepPreviousData,
-    refetchOnMount: false,
+    refetchOnMount: "always",
+  });
+  const queryClient = useQueryClient();
+
+  useMutation({
+    mutationFn: async () => {
+      await fetchNotes({ page: 1, limit: 100 });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["notes"] });
+    },
   });
 
   return (
