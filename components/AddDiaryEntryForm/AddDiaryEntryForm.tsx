@@ -14,7 +14,7 @@ import Select from "../SelectComponent/Select";
 
 import css from "./AddDiaryEntryForm.module.css";
 import { Emotion, fetchEmotions } from "@/lib/api/clientApi";
-import { createNote, updateNote } from "@/lib/api/diaryApi"; // <- додано updateNote
+import { createNote, updateNote } from "@/lib/api/diaryApi";
 import { useNoteModalStore } from "@/lib/store/modalNoteStore";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
