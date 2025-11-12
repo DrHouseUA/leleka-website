@@ -8,8 +8,10 @@ import { useSidebarStore } from "@/lib/store/sidebarStore";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useEffect, useState } from "react";
 import ConfirmationModal from "@/components/ConfirmationModal/ConfirmationModal";
+import { useRouter } from "next/navigation";
 
 export default function SideBar() {
+  const router = useRouter();
   const { isOpen, closeSidebar } = useSidebarStore();
   const { user, clearIsAuthenticated } = useAuthStore();
   const [isMobile, setIsMobile] = useState(false);
@@ -33,6 +35,12 @@ export default function SideBar() {
       await logoutRequest();
       clearIsAuthenticated();
       closeSidebar();
+
+      router.push("/");
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 300);
     } catch (error) {
       console.error("Помилка виходу:", error);
     } finally {
