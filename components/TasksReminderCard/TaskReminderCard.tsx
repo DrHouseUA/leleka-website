@@ -41,6 +41,7 @@ export default function TaskReminderCard() {
     openModal();
   };
 
+
   return (
     <div className={styles.section}>
       <div className={styles.header}>
@@ -63,21 +64,22 @@ export default function TaskReminderCard() {
               key={t._id}
               className={`${styles.taskItem} ${t.isDone ? styles.done : ""}`}
             >
-              <label className={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  checked={t.isDone}
-                  onChange={() => toggleStatus(t)}
-                />
-                <span className={styles.customCheckbox}></span>
-              </label>
-              <div className={styles.taskText}>
-                <span className={styles.taskDate}>
-                  {new Date(t.date).toLocaleDateString("uk-UA", {
-                    day: "2-digit",
-                    month: "2-digit",
-                  })}
-                </span>
+              <span className={styles.taskDate}>
+                {new Date(t.date).toLocaleDateString("uk-UA", {
+                  day: "2-digit",
+                  month: "2-digit",
+                })}
+              </span>
+
+              <div className={styles.taskContent}>
+                <label className={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={t.isDone}
+                    onChange={() => toggleStatus(t)}
+                  />
+                </label>
+
                 <span className={styles.taskName}>{t.name}</span>
               </div>
             </li>
