@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { DiaryNote, deleteNote } from "@/lib/api/diaryApi";
 import { useNoteModalStore } from "@/lib/store/modalNoteStore";
 import ConfirmationModal from "@/components/ConfirmationModal/ConfirmationModal";
+import { useRouter } from "next/navigation";
 
 export default function DiaryEntryDetails() {
   const selectedNote = useSelectedNoteStore((s) => s.selectedNote);
@@ -15,23 +16,12 @@ export default function DiaryEntryDetails() {
   const openNoteModal = useNoteModalStore((s) => s.openNoteModal);
   const [isOpen, setIsOpen] = useState(false);
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const note = selectedNote ?? null;
 
-  // якщо selectedNote є — беремо її. Інакше пробуємо знайти в кеші ["notes"].
-  const noteFromCache: DiaryNote | undefined = React.useMemo(() => {
-    if (selectedNote) return selectedNote;
-    const notesData = queryClient.getQueryData<{ diaryNotes: DiaryNote[] }>([
-      "notes",
-    ]);
-    return notesData?.diaryNotes?.find(Boolean);
-  }, [selectedNote, queryClient]);
-
-  const note = selectedNote ?? noteFromCache ?? null;
-
-  // Мутація видалення нотатки
   const deleteMutation = useMutation({
     mutationFn: (id: string) => deleteNote(id),
     onMutate: async (id: string) => {
-      // оптимістичне оновлення кешу: видаляємо нотатку з локального кешу
       await queryClient.cancelQueries({ queryKey: ["notes"] });
       const previous = queryClient.getQueryData<{ diaryNotes: DiaryNote[] }>([
         "notes",
@@ -42,27 +32,19 @@ export default function DiaryEntryDetails() {
           diaryNotes: previous.diaryNotes.filter((n) => n._id !== id),
         });
       }
-      // якщо видалена була поточна вибрана нотатка — очищаємо selection
       if (selectedNote?._id === id) {
         setSelectedNote(null);
       }
       return { previous };
     },
-    onError: (
-      err: unknown,
-      id: string,
-      context?: { previous?: { diaryNotes: DiaryNote[] } }
-    ) => {
-      // відкат кешу у випадку помилки
-      if (context?.previous) {
-        queryClient.setQueryData(["notes"], context.previous);
-      }
+    onError: (err: unknown) => {
       // Тут можна логувати помилку або показати повідомлення користувачу
       console.error("Delete note failed", err);
     },
     onSettled: () => {
       // оновлюємо/перезапитуємо список нотаток після завершення
       queryClient.invalidateQueries({ queryKey: ["notes"] });
+      router.push("/diary");
     },
   });
   if (!note) {
