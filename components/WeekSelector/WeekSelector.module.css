@@ -1,13 +1,10 @@
-
 .weekSelectorContainer {
-  width: 100%;
   padding-bottom: 16px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  width: 100%;
-  max-width: 100%;
+  max-width: 335px;
   gap: 10px;
   padding: 10px;
   -webkit-overflow-scrolling: touch;
@@ -163,11 +160,18 @@
   transition: all 0.4s ease;
 }
 
+@media screen and (min-width: 768px){
+.weekSelectorContainer{
+  max-width: 704px;
+}
+}
 @media screen and (min-width: 1440px) {
   .weekText {
     font-size: 16px;
   }
-
+.weekSelectorContainer{
+  max-width: 1128px;
+}
   .weekNumbers {
     font-size: 32px;
   }
