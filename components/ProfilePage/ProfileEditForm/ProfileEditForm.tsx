@@ -10,7 +10,7 @@ import {
   FormikHelpers,
 } from "formik";
 import styles from "./ProfileEditForm.module.css";
-import { useId, useMemo, useState, useRef, useEffect } from "react";
+import { useId, useMemo, useState } from "react";
 import Select from "@/components/SelectComponent/Select";
 import { useAuthStore } from "@/lib/store/authStore";
 import { updateUser } from "@/lib/api/clientApi";
@@ -49,22 +49,6 @@ export default function ProfileEditForm() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  // const iziToastRef = useRef<any | null>(null);
-
-  // useEffect(() => {
-  //   // Завантажити CSS один раз на клієнті
-  //   import("izitoast/dist/css/iziToast.min.css").catch(() => {});
-  //   // Динамічно імпортувати модуль і зберегти його в ref
-  //   import("izitoast")
-  //     .then((mod) => {
-  //       iziToastRef.current = mod.default || mod;
-  //     })
-  //     .catch(() => {
-  //       iziToastRef.current = null;
-  //     });
-  // }, []);
-
-  // Опції для селекту — детерміновані і стабільні
   const genderOptions: GenderOption[] = useMemo(
     () => [
       { value: "Чоловіча", label: "Хлопчик" },
@@ -116,11 +100,6 @@ export default function ProfileEditForm() {
       setUser({ ...user, ...updatedUser } as UserData);
 
       setSuccessMessage("Профіль успішно оновлено");
-      // iziToast.success({
-      //   title: "Успіх",
-      //   message: "Профіль успішно оновлено",
-      //   position: "topRight",
-      // });
     } catch (err: unknown) {
       let message = "Помилка при збереженні";
       if (typeof err === "string") {
@@ -133,11 +112,6 @@ export default function ProfileEditForm() {
         message = e.response?.data?.message ?? e.message ?? message;
       }
       setSubmitError(message);
-      //     iziToast.error({
-      //   title: "Помилка",
-      //   message,
-      //   position: "topRight",
-      // });
     } finally {
       setSubmitting(false);
     }

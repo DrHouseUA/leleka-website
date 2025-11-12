@@ -7,7 +7,7 @@
 
 @media only screen and (min-width: 1440px) {
   .main {
-    justify-content: flex-start;
+    justify-content: center;
     overflow-x: hidden;
     height: 100%;
   }
