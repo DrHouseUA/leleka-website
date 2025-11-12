@@ -10,17 +10,11 @@ export interface TasksResponce {
 }
 
 // GET /tasks
-// export async function fetchTasks(): Promise<TasksResponce> {
-//   const res = await nextServerApi.get("/tasks");
-//   return res.data;
-// }
-
 export async function fetchTasks(): Promise<TasksResponce> {
   try {
     const res = await nextServerApi.get("/tasks");
     return res.data;
   } catch (error) {
-    // Якщо користувач не аутентифікований, повертаємо пусті дані
     if (axios.isAxiosError(error) && error.response?.status === 401) {
       return { tasks: [], totalCount: 0, totalPages: 0, page: 0 };
     }
