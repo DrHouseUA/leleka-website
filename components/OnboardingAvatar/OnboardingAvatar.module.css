@@ -23,7 +23,7 @@
   font-size: 16px;
   line-height: 160%;
   color: #000;
-
+  cursor: pointer;
 }
 .avatarImage {
   border-radius: 100%;

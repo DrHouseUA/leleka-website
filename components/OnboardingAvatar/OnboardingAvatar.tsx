@@ -5,6 +5,7 @@ import { ApiError } from "next/dist/server/api-utils";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import css from "./OnboardingAvatar.module.css";
+import toast from "react-hot-toast";
 
 export default function ProfileAvatar() {
   const [error, setError] = useState("");
@@ -23,17 +24,28 @@ export default function ProfileAvatar() {
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      toast.removeAll();
+
       const previewUrl = URL.createObjectURL(file);
       setLocalAvatar(previewUrl);
       try {
+        toast.loading("йде завантаження");
         const { user: updatedUser } = await uploadImage(file);
         console.log(updatedUser);
         setUser({
           ...user,
           ...updatedUser,
         });
+        toast.removeAll();
+        toast.success("Зобрження завантажено успішно!", {
+          position: "top-right",
+        });
       } catch (error) {
         setError((error as ApiError).message);
+        toast.removeAll();
+        toast.error("Завантаження не вдалось, виберіть фото розміром до 1 МБ", {
+          position: "top-right",
+        });
       }
     }
   };
@@ -63,7 +75,6 @@ export default function ProfileAvatar() {
           <button onClick={handleButtonClick} className={css.uploadButton}>
             Завантажити фото
           </button>
-          {error && <p>{error}</p>}
         </div>
       </>
     </div>

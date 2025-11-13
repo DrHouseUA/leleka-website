@@ -49,9 +49,9 @@ const RegistrationForm = () => {
     <div className={css.container}>
       <header className={css.header}>
         <Link href="/" className={css.logo}>
-        <Image src="/logo.svg" alt="Logo" width={30} height={30} />
-        <Image src="/logotext.svg" alt="Logotext" width={60} height={13} />
-      </Link>
+          <Image src="/logo.svg" alt="Logo" width={30} height={30} />
+          <Image src="/logotext.svg" alt="Logotext" width={60} height={13} />
+        </Link>
       </header>
 
       <div className={css.pageWrapper}>
