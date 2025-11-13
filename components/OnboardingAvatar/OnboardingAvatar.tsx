@@ -19,6 +19,7 @@ export default function ProfileAvatar() {
 
   const handleButtonClick = () => {
     fileInputRef.current?.click();
+    console.warn(error);
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
