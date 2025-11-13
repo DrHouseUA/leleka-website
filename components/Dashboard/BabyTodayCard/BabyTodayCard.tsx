@@ -9,7 +9,6 @@ import { useAuthStore } from "@/lib/store/authStore";
 
 export default function BabyTodayCard() {
   const { isAuthenticated } = useAuthStore();
-  console.log(isAuthenticated);
   const { data, isError } = useQuery({
     queryKey: ["babyData"],
     queryFn: async () => await getBabyData(isAuthenticated),

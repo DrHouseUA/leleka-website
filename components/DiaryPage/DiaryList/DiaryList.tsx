@@ -81,7 +81,7 @@ export default function DiaryList() {
         <AddDiaryEntryModal
           onClose={() => {
             closeNoteModal();
-            useSelectedNoteStore.getState().setSelectedNote(null);
+            useSelectedNoteStore.getState().setSelectedNote(selectedNote);
           }}
         >
           <AddDiaryEntryForm editingNote={selectedNote ?? null} />
