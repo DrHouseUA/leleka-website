@@ -47,6 +47,7 @@ const LoginForm = () => {
 
       actions.resetForm();
       router.push("/");
+      window.location.href = "/";
     } catch (error) {
       seterror((error as ApiError).message);
     }

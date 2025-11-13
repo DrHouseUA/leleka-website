@@ -14,6 +14,7 @@ import {
 } from "@tanstack/react-query";
 import { useNoteModalStore } from "@/lib/store/modalNoteStore";
 import { useSelectedNoteStore } from "@/lib/store/selectedNoteStore";
+import toast from "react-hot-toast";
 
 export default function DiaryList() {
   const { isOpen, openNoteModal, closeNoteModal } = useNoteModalStore();
@@ -33,6 +34,9 @@ export default function DiaryList() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
+    },
+    onError: () => {
+      toast.error("Щось пішло не так");
     },
   });
 

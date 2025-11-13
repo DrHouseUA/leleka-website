@@ -24,7 +24,13 @@ export default function OnboardingProfilePage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <Link href="/" className={styles.logo}>
+        <Link
+          href={"/"}
+          className={styles.logo}
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        >
           <Image src="/logo.svg" alt="Logo" width={30} height={30} />
           <Image src="/logotext.svg" alt="Logotext" width={60} height={13} />
         </Link>

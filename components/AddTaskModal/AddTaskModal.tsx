@@ -52,7 +52,7 @@ export default function AddTaskModal() {
             id="date"
             className={styles.input}
             type="date"
-            value={date}
+            value={today}
             min={today}
             max={max}
             onChange={(e) => setDate(e.target.value)}

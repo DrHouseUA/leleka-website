@@ -11,6 +11,7 @@ export default function HomeLayout({
   children: React.ReactNode;
 }>) {
   const { width } = useWindowSize();
+
   return (
     <>
       {width < 1440 ? <Header /> : null}
