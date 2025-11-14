@@ -14,6 +14,12 @@
   margin-bottom: 32px;
 }
 
+@media only screen and (min-width: 768px) {
+  .diary-list-block {
+    width: 704px;
+  }
+}
+
 .diary-list-header {
   display: flex;
   justify-content: space-between;
@@ -62,6 +68,12 @@
   width: 303px;
 
   background: var(--color-scheme-foreground-alt);
+}
+
+@media only screen and (min-width: 768px) {
+  .diary-item {
+    width: 672px;
+  }
 }
 
 .add-icon {
